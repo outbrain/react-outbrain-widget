@@ -1,0 +1,31 @@
+{
+  "name": "outbrainwidgetreactcomponent",
+  "version": "1.0.0",
+  "description": "A component to embed a outbrain widget inside a react app",
+  "main": "build/index.js",
+  "peerDependencies": {
+    "react": "^15.5.4"
+  },
+  "dependencies": {
+    "react": "^16.8.6",
+    "webpack": "^2.6.1"
+  },
+  "scripts": {
+    "start": "webpack --watch",
+    "build": "webpack",
+    "prepublish": "rm -rf ./dist && npm run build",
+    "test": "true"
+  },
+  "author": {
+    "name": "agroisman",
+    "email": "agroisman@outbrain.com"
+  },
+  "devDependencies": {
+    "babel-cli": "^6.24.1",
+    "babel-core": "^6.24.1",
+    "babel-loader": "^7.0.0",
+    "babel-plugin-transform-object-rest-spread": "^6.23.0",
+    "babel-plugin-transform-react-jsx": "^6.24.1",
+    "babel-preset-env": "^1.5.1"
+  }
+}
