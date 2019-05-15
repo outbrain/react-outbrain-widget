@@ -1,2 +1,2 @@
 # OutbrainWidgetReactComponent
-A component to embed a outbrain widget inside a react app 
+A component to embed an outbrain widget inside a react app 
