@@ -1,4 +1,4 @@
-import React, { Component, PropTypes } from "react";
+import React, { Component } from "react";
 
 class OutbrainWidget extends Component {
   componentDidUpdate() {
@@ -25,15 +25,5 @@ class OutbrainWidget extends Component {
     );
   }
 }
-
-OutbrainWidget.propTypes = {
-  dataSrc: PropTypes.string,
-  dataWidgetId: PropTypes.string,
-  obTemplate: PropTypes.string,
-  obInstallationKey: PropTypes.string,
-  obInstallationType: PropTypes.string,
-  obAppVer: PropTypes.string,
-  isSecured: PropTypes.string
-};
 
 export { OutbrainWidget };
