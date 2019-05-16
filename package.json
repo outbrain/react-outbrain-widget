@@ -1,5 +1,5 @@
 {
-  "name": "outbrainwidgetreactcomponent",
+  "name": "react-outbrain-widget",
   "version": "1.0.1",
   "description": "A component to embed a outbrain widget inside a react app",
   "main": "build/index.js",
