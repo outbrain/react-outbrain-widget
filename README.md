@@ -11,7 +11,7 @@ Embed your outbrain widget inside a react app
 [**Live Demo**](https://codesandbox.io/s/54m7mo4o8p)
 
 ## Installation & Usage
-**Note:** *react-outbrain-widget assumes outbrain.js was loaded before react's first rendering. Please make sure outbrain.js is loaded via a <script> tag on the app's index.html*
+**Note:** *react-outbrain-widget assumes outbrain.js was loaded before react's first rendering. Please make sure outbrain.js is loaded via a script tag on the app's index.html*
 
 ```sh
 npm install react-outbrain-widget --save
