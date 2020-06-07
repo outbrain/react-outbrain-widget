@@ -11,9 +11,9 @@ const OutbrainWidget = (props) => {
     obAppVer = '',
     isSecured = '',
   } = props;
-  const { OBR } = window;
 
   useEffect(() => {
+    const { OBR } = window;
     if (OBR && OBR.extern && typeof OBR.extern.renderSpaWidgets === 'function') {
       OBR.extern.renderSpaWidgets(dataSrc);
     }
