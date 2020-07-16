@@ -20,16 +20,18 @@ const OutbrainWidget = (props) => {
   }, [dataSrc]);
 
   return (
-    <div
-      className="OUTBRAIN"
-      data-src={dataSrc}
-      data-widget-id={dataWidgetId}
-      data-ob-template={obTemplate}
-      data-ob-installation-key={obInstallationKey}
-      data-ob-installation-type={obInstallationType}
-      data-ob-app-ver={obAppVer}
-      data-is-secured={isSecured}
-    />
+    <div key={dataWidgetId}>
+      <div
+        className="OUTBRAIN"
+        data-src={dataSrc}
+        data-widget-id={dataWidgetId}
+        data-ob-template={obTemplate}
+        data-ob-installation-key={obInstallationKey}
+        data-ob-installation-type={obInstallationType}
+        data-ob-app-ver={obAppVer}
+        data-is-secured={isSecured}
+      />
+    </div>
   );
 };
 
