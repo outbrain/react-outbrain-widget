@@ -5,6 +5,7 @@ const OutbrainWidget = (props) => {
   const {
     dataSrc = '',
     dataWidgetId = '',
+    obUserId = '',
     obTemplate = '',
     obInstallationKey = '',
     obInstallationType = '',
@@ -24,6 +25,7 @@ const OutbrainWidget = (props) => {
       className="OUTBRAIN"
       data-src={dataSrc}
       data-widget-id={dataWidgetId}
+      data-ob-user-id={obUserId}
       data-ob-template={obTemplate}
       data-ob-installation-key={obInstallationKey}
       data-ob-installation-type={obInstallationType}
@@ -36,6 +38,7 @@ const OutbrainWidget = (props) => {
 OutbrainWidget.propTypes = {
   dataSrc: PropTypes.string.isRequired,
   dataWidgetId: PropTypes.string.isRequired,
+  obUserId: PropTypes.string,
   obTemplate: PropTypes.string,
   obInstallationKey: PropTypes.string,
   obInstallationType: PropTypes.string,
@@ -44,6 +47,7 @@ OutbrainWidget.propTypes = {
 };
 
 OutbrainWidget.defaultProps = {
+  obUserId: 'null',
   obTemplate: '',
   obInstallationKey: '',
   obInstallationType: '',
