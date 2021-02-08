@@ -21,7 +21,7 @@ const OutbrainWidget = (props) => {
   }, [dataSrc]);
 
   return (
-    <div className="REACT-OUTBRAIN-WRAPPER">
+    <div className="OB-REACT-WRAPPER">
       <div
         className="OUTBRAIN"
         data-src={dataSrc}
