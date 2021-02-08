@@ -1,6 +1,7 @@
 //project based on https://medium.com/@BrodaNoel/how-to-create-a-react-component-and-publish-it-in-npm-668ad7d363ce
 var path = require('path');
 module.exports = {
+  mode: 'production',
   entry: './src/index.jsx',
   output: {
     path: path.resolve(__dirname, 'build'),
@@ -20,6 +21,7 @@ module.exports = {
     ],
   },
   externals: {
-    react: 'commonjs react', // this line is just to use the React dependency of our parent-testing-project instead of using our own React.
-  },
+    'react': 'commonjs react',
+    'react-dom' : 'commonjs react-dom'
+  }
 };
