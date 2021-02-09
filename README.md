@@ -8,7 +8,7 @@ Embed your outbrain widget inside a react app
 
 ## Demo
 
-[**Live Demo**](https://codesandbox.io/s/54m7mo4o8p)
+[**Live Demo**](https://codesandbox.io/s/outbrain-react-widget-example-yet94)
 
 ## Installation & Usage
 
