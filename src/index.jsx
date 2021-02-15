@@ -2,7 +2,7 @@ import React, { useEffect } from 'react';
 import PropTypes from 'prop-types';
 
 function removeEmpty(obj) {
-  return Object.fromEntries(Object.entries(obj).filter(([_, v]) => !!v));
+  return Object.fromEntries(Object.entries(obj).filter(([_, v]) => v != null));
 }
 
 const OutbrainWidget = (props) => {
@@ -15,9 +15,9 @@ const OutbrainWidget = (props) => {
     obInstallationType = '',
     obAppVer = '',
     isSecured = '',
-    obContentUrl = '',
-    obPortalUrl = '',
-    obBundleUrl = ''
+    obContentUrl = null,
+    obPortalUrl = null,
+    obBundleUrl = null
   } = props;
 
   const attrs = removeEmpty({
@@ -72,9 +72,9 @@ OutbrainWidget.defaultProps = {
   obInstallationType: '',
   obAppVer: '',
   isSecured: '',
-  obContentUrl: '',
-  obPortalUrl: '',
-  obBundleUrl: ''
+  obContentUrl: null,
+  obPortalUrl: null,
+  obBundleUrl: null
 };
 
 export { OutbrainWidget };
