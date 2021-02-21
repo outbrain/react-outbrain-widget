@@ -1,6 +1,10 @@
 import React, { useEffect } from 'react';
 import PropTypes from 'prop-types';
 
+function removeEmpty(obj) {
+  return Object.fromEntries(Object.entries(obj).filter(([_, v]) => v != null));
+}
+
 const OutbrainWidget = (props) => {
   const {
     dataSrc = '',
@@ -11,7 +15,24 @@ const OutbrainWidget = (props) => {
     obInstallationType = '',
     obAppVer = '',
     isSecured = '',
+    obContentUrl = null,
+    obPortalUrl = null,
+    obBundleUrl = null
   } = props;
+
+  const attrs = removeEmpty({
+    'data-src': dataSrc,
+    'data-widget-id': dataWidgetId,
+    'data-ob-user-id': obUserId,
+    'data-ob-template': obTemplate,
+    'data-ob-installation-key': obInstallationKey,
+    'data-ob-installation-type': obInstallationType,
+    'data-ob-app-ver': obAppVer,
+    'data-is-secured': isSecured,
+    'data-ob-contenturl': obContentUrl,
+    'data-ob-portalurl': obPortalUrl,
+    'data-ob-bundleurl': obBundleUrl
+  });
 
   useEffect(() => {
     const { OBR } = window;
@@ -24,14 +45,7 @@ const OutbrainWidget = (props) => {
     <div className="OB-REACT-WRAPPER">
       <div
         className="OUTBRAIN"
-        data-src={dataSrc}
-        data-widget-id={dataWidgetId}
-        data-ob-user-id={obUserId}
-        data-ob-template={obTemplate}
-        data-ob-installation-key={obInstallationKey}
-        data-ob-installation-type={obInstallationType}
-        data-ob-app-ver={obAppVer}
-        data-is-secured={isSecured}
+        {...attrs}
       />
     </div>
   );
@@ -46,6 +60,9 @@ OutbrainWidget.propTypes = {
   obInstallationType: PropTypes.string,
   obAppVer: PropTypes.string,
   isSecured: PropTypes.string,
+  obContentUrl: PropTypes.string,
+  obPortalUrl: PropTypes.string,
+  obBundleUrl: PropTypes.string
 };
 
 OutbrainWidget.defaultProps = {
@@ -55,6 +72,9 @@ OutbrainWidget.defaultProps = {
   obInstallationType: '',
   obAppVer: '',
   isSecured: '',
+  obContentUrl: null,
+  obPortalUrl: null,
+  obBundleUrl: null
 };
 
 export { OutbrainWidget };

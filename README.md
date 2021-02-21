@@ -45,3 +45,6 @@ class Component extends React.Component {
 | **obInstallationType** | string |
 | **obAppVer**           | string |
 | **isSecured**          | string |
+| **obContentUrl**       | string |
+| **obPortalUrl**        | string |
+| **obBundleUrl**        | string |
