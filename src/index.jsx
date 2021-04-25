@@ -17,7 +17,11 @@ const OutbrainWidget = (props) => {
     isSecured = '',
     obContentUrl = null,
     obPortalUrl = null,
-    obBundleUrl = null
+    obBundleUrl = null,
+    obLanguage = null,
+    obPsub = null,
+    obAppId = null,
+    externalId = null
   } = props;
 
   const attrs = removeEmpty({
@@ -31,8 +35,14 @@ const OutbrainWidget = (props) => {
     'data-is-secured': isSecured,
     'data-ob-contenturl': obContentUrl,
     'data-ob-portalurl': obPortalUrl,
-    'data-ob-bundleurl': obBundleUrl
+    'data-ob-bundleurl': obBundleUrl,
+    'data-ob-language': obLanguage,
+    'data-ob-psub': obPsub,
+    'data-ob-app-id': obAppId,
+    'data-external-id': externalId
   });
+
+  console.log('zagao', attrs);
 
   useEffect(() => {
     const { OBR } = window;
@@ -62,7 +72,11 @@ OutbrainWidget.propTypes = {
   isSecured: PropTypes.string,
   obContentUrl: PropTypes.string,
   obPortalUrl: PropTypes.string,
-  obBundleUrl: PropTypes.string
+  obBundleUrl: PropTypes.string,
+  obLanguage: PropTypes.string,
+  obPsub: PropTypes.string,
+  obAppId: PropTypes.string,
+  externalId: PropTypes.string
 };
 
 OutbrainWidget.defaultProps = {
@@ -74,7 +88,11 @@ OutbrainWidget.defaultProps = {
   isSecured: '',
   obContentUrl: null,
   obPortalUrl: null,
-  obBundleUrl: null
+  obBundleUrl: null,
+  obLanguage: null,
+  obPsub: null,
+  obAppId: null,
+  externalId: null
 };
 
 export { OutbrainWidget };
