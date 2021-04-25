@@ -42,8 +42,6 @@ const OutbrainWidget = (props) => {
     'data-external-id': externalId
   });
 
-  console.log('zagao', attrs);
-
   useEffect(() => {
     const { OBR } = window;
     if (OBR && OBR.extern && typeof OBR.extern.renderSpaWidgets === 'function') {
