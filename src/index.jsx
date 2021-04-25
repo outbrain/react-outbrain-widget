@@ -35,11 +35,12 @@ const OutbrainWidget = (props) => {
     obContentUrl = null,
     obPortalUrl = null,
     obBundleUrl = null,
-    scriptSrc = 'https://widgets.outbrain.com/outbrain.js',
     obLanguage = null,
     obPsub = null,
     obAppId = null,
-    externalId = null
+    externalId = null,
+    obInjectScript = true,
+    scriptSrc = 'https://widgets.outbrain.com/outbrain.js'
   } = props;
 
   const attrs = removeEmpty({
@@ -61,10 +62,12 @@ const OutbrainWidget = (props) => {
   });
 
   useEffect(() => {
+    if (!obInjectScript) { return; }
+    
     const script = createOutbrainScript(scriptSrc);
 
     return () => { removeOutbrainScript(script); }
-  }, [scriptSrc]);
+  }, [scriptSrc, obInjectScript]);
 
   useEffect(() => {
     const { OBR } = window;
