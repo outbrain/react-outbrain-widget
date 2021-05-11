@@ -5,6 +5,23 @@ function removeEmpty(obj) {
   return Object.fromEntries(Object.entries(obj).filter(([_, v]) => v != null));
 }
 
+function createOutbrainScript(scriptSrc) {
+  if (!window.OBR) {
+    const script = document.createElement('script');
+    script.src = scriptSrc;
+
+    document.head.appendChild(script);
+    
+    return script;
+  }
+}
+
+function removeOutbrainScript(script) {
+  if (script) {
+    script.remove();
+  }
+}
+
 const OutbrainWidget = (props) => {
   const {
     dataSrc = '',
@@ -21,7 +38,9 @@ const OutbrainWidget = (props) => {
     obLanguage = null,
     obPsub = null,
     obAppId = null,
-    externalId = null
+    externalId = null,
+    obInjectScript = true,
+    scriptSrc = 'https://widgets.outbrain.com/outbrain.js'
   } = props;
 
   const attrs = removeEmpty({
@@ -41,6 +60,14 @@ const OutbrainWidget = (props) => {
     'data-ob-app-id': obAppId,
     'data-external-id': externalId
   });
+
+  useEffect(() => {
+    if (!obInjectScript) { return; }
+    
+    const script = createOutbrainScript(scriptSrc);
+
+    return () => { removeOutbrainScript(script); }
+  }, [scriptSrc, obInjectScript]);
 
   useEffect(() => {
     const { OBR } = window;
