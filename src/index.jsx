@@ -1,16 +1,19 @@
-import React, { useEffect } from 'react';
 import PropTypes from 'prop-types';
+import React, { useEffect, useRef } from 'react';
 
-function removeEmpty(obj) {
-  return Object.fromEntries(Object.entries(obj).filter(([_, v]) => v != null));
-}
+const removeNullOrEmpty = (obj) => Object.fromEntries(Object.entries(obj).filter(([_, v]) => v != null && v !== ''));
+
+const WidgetContainer = ({ attrs }) => {
+  return <div className="OUTBRAIN" {...attrs}></div>;
+};
 
 const OutbrainWidget = (props) => {
+  const widgetWrapperEl = useRef(null);
+
   const {
     dataSrc = '',
     dataWidgetId = '',
     obUserId = '',
-    obTemplate = '',
     obInstallationKey = '',
     obInstallationType = '',
     obAppVer = '',
@@ -21,14 +24,13 @@ const OutbrainWidget = (props) => {
     obLanguage = null,
     obPsub = null,
     obAppId = null,
-    externalId = null
+    externalId = null,
   } = props;
 
-  const attrs = removeEmpty({
+  const attrs = removeNullOrEmpty({
     'data-src': dataSrc,
     'data-widget-id': dataWidgetId,
     'data-ob-user-id': obUserId,
-    'data-ob-template': obTemplate,
     'data-ob-installation-key': obInstallationKey,
     'data-ob-installation-type': obInstallationType,
     'data-ob-app-ver': obAppVer,
@@ -39,22 +41,37 @@ const OutbrainWidget = (props) => {
     'data-ob-language': obLanguage,
     'data-ob-psub': obPsub,
     'data-ob-app-id': obAppId,
-    'data-external-id': externalId
+    'data-external-id': externalId,
   });
 
-  useEffect(() => {
+  const permalink = dataSrc || obContentUrl || obPortalUrl || obBundleUrl;
+
+  const isContainerMarked = () => {
+    const el = widgetWrapperEl.current;
+    const widgetContainer = el.querySelector('.OUTBRAIN');
+
+    if (widgetContainer) {
+      return !!widgetContainer.getAttribute('data-ob-mark');
+    }
+
+    return false;
+  };
+
+  const callRenderSpaWidgets = (url) => {
     const { OBR } = window;
     if (OBR && OBR.extern && typeof OBR.extern.renderSpaWidgets === 'function') {
-      OBR.extern.renderSpaWidgets(dataSrc);
+      OBR.extern.renderSpaWidgets(url);
     }
-  }, [dataSrc]);
+  };
+
+  useEffect(() => {
+    if (isContainerMarked()) return; // stop if container was already found
+    callRenderSpaWidgets(permalink);
+  }, [attrs]);
 
   return (
-    <div className="OB-REACT-WRAPPER">
-      <div
-        className="OUTBRAIN"
-        {...attrs}
-      />
+    <div ref={widgetWrapperEl} className="OB-REACT-WRAPPER">
+      <WidgetContainer key={Date.now()} attrs={attrs} />
     </div>
   );
 };
@@ -63,7 +80,6 @@ OutbrainWidget.propTypes = {
   dataSrc: PropTypes.string.isRequired,
   dataWidgetId: PropTypes.string.isRequired,
   obUserId: PropTypes.string,
-  obTemplate: PropTypes.string,
   obInstallationKey: PropTypes.string,
   obInstallationType: PropTypes.string,
   obAppVer: PropTypes.string,
@@ -74,12 +90,11 @@ OutbrainWidget.propTypes = {
   obLanguage: PropTypes.string,
   obPsub: PropTypes.string,
   obAppId: PropTypes.string,
-  externalId: PropTypes.string
+  externalId: PropTypes.string,
 };
 
 OutbrainWidget.defaultProps = {
-  obUserId: 'null',
-  obTemplate: '',
+  obUserId: '',
   obInstallationKey: '',
   obInstallationType: '',
   obAppVer: '',
@@ -90,7 +105,7 @@ OutbrainWidget.defaultProps = {
   obLanguage: null,
   obPsub: null,
   obAppId: null,
-  externalId: null
+  externalId: null,
 };
 
 export { OutbrainWidget };
