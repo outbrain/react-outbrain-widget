@@ -41,7 +41,7 @@ class Component extends React.Component {
 }
 ```
 
-### Placement props (Choose one from 4 types)
+### Placement props (Only use advised one)
 Either of the following props is **required** to use the component. Use the correct props and value which were advised by your Sales Engineer to represent where the widget is served.
 
 Props Name | Type | Integration type | Description | Example
