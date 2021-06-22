@@ -16,7 +16,7 @@ Embed your outbrain widget inside a react app
 
 ```html
 <head>
-	<script type="text/javascript" async="async" src="https://widgets.outbrain.com/outbrain.js"></script>
+	<script async src="https://widgets.outbrain.com/outbrain.js"></script>
 </head>
 ```
 
