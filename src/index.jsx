@@ -3,29 +3,25 @@ import React, { useEffect, useRef } from 'react';
 
 const removeNullOrEmpty = (obj) => Object.fromEntries(Object.entries(obj).filter(([_, v]) => v != null && v !== ''));
 
-const WidgetContainer = ({ attrs }) => {
-  return <div className="OUTBRAIN" {...attrs}></div>;
-};
+const WidgetContainer = ({ attrs }) => <div className="OUTBRAIN" {...attrs} />;
 
-const OutbrainWidget = (props) => {
+const OutbrainWidget = React.memo(({
+  dataSrc,
+  dataWidgetId,
+  obUserId,
+  obInstallationKey,
+  obInstallationType,
+  obAppVer,
+  isSecured,
+  obContentUrl,
+  obPortalUrl,
+  obBundleUrl,
+  obLanguage,
+  obPsub,
+  obAppId,
+  externalId,
+}) => {
   const widgetWrapperEl = useRef(null);
-
-  const {
-    dataSrc = '',
-    dataWidgetId = '',
-    obUserId = '',
-    obInstallationKey = '',
-    obInstallationType = '',
-    obAppVer = '',
-    isSecured = '',
-    obContentUrl = null,
-    obPortalUrl = null,
-    obBundleUrl = null,
-    obLanguage = null,
-    obPsub = null,
-    obAppId = null,
-    externalId = null,
-  } = props;
 
   const attrs = removeNullOrEmpty({
     'data-src': dataSrc,
@@ -74,7 +70,7 @@ const OutbrainWidget = (props) => {
       <WidgetContainer key={Date.now()} attrs={attrs} />
     </div>
   );
-};
+});
 
 OutbrainWidget.propTypes = {
   dataSrc: PropTypes.string.isRequired,
