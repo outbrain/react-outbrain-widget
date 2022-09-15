@@ -1,8 +1,11 @@
 import PropTypes from 'prop-types';
 import React, { useEffect, useRef } from 'react';
 
-const removeNullOrEmpty = (obj) => Object.fromEntries(Object.entries(obj).filter(([_, v]) => v != null && v !== ''));
-
+const removeNullOrEmpty = (obj) => {
+  const o = {};
+  Object.keys(obj).forEach((key) => obj[key] !== null && obj[key] !== '' && (o[key] = obj[key]));
+  return o;
+};
 const WidgetContainer = ({ attrs }) => <div className="OUTBRAIN" {...attrs} />;
 
 const OutbrainWidget = React.memo(({
