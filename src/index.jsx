@@ -11,18 +11,18 @@ const WidgetContainer = ({ attrs }) => <div className="OUTBRAIN" {...attrs} />;
 const OutbrainWidget = React.memo(({
   dataSrc,
   dataWidgetId,
-  obUserId,
-  obInstallationKey,
-  obInstallationType,
-  obAppVer,
-  isSecured,
-  obContentUrl,
-  obPortalUrl,
-  obBundleUrl,
-  obLanguage,
-  obPsub,
-  obAppId,
-  externalId,
+  obUserId = '',
+  obInstallationKey = '',
+  obInstallationType = '',
+  obAppVer = '',
+  isSecured = '',
+  obContentUrl = null,
+  obPortalUrl = null,
+  obBundleUrl = null,
+  obLanguage = null,
+  obPsub = null,
+  obAppId = null,
+  externalId = null,
 }) => {
   const widgetWrapperEl = useRef(null);
 
@@ -90,21 +90,6 @@ OutbrainWidget.propTypes = {
   obPsub: PropTypes.string,
   obAppId: PropTypes.string,
   externalId: PropTypes.string,
-};
-
-OutbrainWidget.defaultProps = {
-  obUserId: '',
-  obInstallationKey: '',
-  obInstallationType: '',
-  obAppVer: '',
-  isSecured: '',
-  obContentUrl: null,
-  obPortalUrl: null,
-  obBundleUrl: null,
-  obLanguage: null,
-  obPsub: null,
-  obAppId: null,
-  externalId: null,
 };
 
 export { OutbrainWidget };
