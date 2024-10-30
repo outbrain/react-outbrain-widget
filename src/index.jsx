@@ -1,11 +1,13 @@
 import PropTypes from 'prop-types';
 import React, { useEffect, useRef } from 'react';
 
-const removeNullOrEmpty = (obj) => {
-  const o = {};
-  Object.keys(obj).forEach((key) => obj[key] !== null && obj[key] !== '' && (o[key] = obj[key]));
-  return o;
-};
+const removeNullOrEmpty = (obj) => Object.keys(obj).reduce((acc, key) => {
+  if (obj[key] !== null && obj[key] !== '') {
+    acc[key] = obj[key];
+  }
+  return acc;
+}, {});
+
 const WidgetContainer = ({ attrs }) => <div className="OUTBRAIN" {...attrs} />;
 
 const OutbrainWidget = React.memo(({
@@ -23,6 +25,7 @@ const OutbrainWidget = React.memo(({
   obPsub = null,
   obAppId = null,
   externalId = null,
+  obDarkMode = null,
 }) => {
   const widgetWrapperEl = useRef(null);
 
@@ -41,6 +44,7 @@ const OutbrainWidget = React.memo(({
     'data-ob-psub': obPsub,
     'data-ob-app-id': obAppId,
     'data-external-id': externalId,
+    'data-dark-mode': obDarkMode,
   });
 
   const permalink = dataSrc || obContentUrl || obPortalUrl || obBundleUrl;
@@ -90,6 +94,7 @@ OutbrainWidget.propTypes = {
   obPsub: PropTypes.string,
   obAppId: PropTypes.string,
   externalId: PropTypes.string,
+  obDarkMode: PropTypes.string,
 };
 
 export { OutbrainWidget };
