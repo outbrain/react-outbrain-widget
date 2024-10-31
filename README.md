@@ -62,6 +62,7 @@ props Name | Type | Requirement | Description | Example
 `data-app-ver`| String | Optional | A version number of the App | "1.0.0"
 `obPsub` | String | *Only if instructed by SE, App & Native only* | String value for additional section-level reporting breakdowns. Allowed characters: alphanumeric and underscore '_'. Requires permission from your Sales Engineer or Partner Manager. | "minus1"
 `externalId` | String | Optional | String value with maximum of 70 characters for use with the [Engage Variant Reporting API](https://engagereportsapiexternalid.docs.apiary.io/#reference/reports/external-id-report). A maximum of 10K IDs/hour are supported. Contact your Partner Manager for API access. | "id123"
+`obDarkMode` | String | Optional | A string value to set dark mode on or off, the options are "true" or "false"| "true"
 
 
 ## Rendering optimisation
